@@ -30,7 +30,7 @@ app.use('/api/v1/auth', authRoutes);
 
 // Root endpoint
 app.get('/', (req, res) => {
-  res.send('Welcome to my blog application!');
+  res.send('<h1>Welcome to the e-commerce app<h1>');
 });
 
 const PORT = process.env.PORT || 8000; 
