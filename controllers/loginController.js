@@ -21,12 +21,12 @@ export const registerController = async (req, res) => {
     if (!password) {
       return res.send({ message: "password is Required" });
     }
-    if (!phone) {
-      return res.send({ message: "phone is Required" });
-    }
-    if (!address) {
-      return res.send({ message: "address is Required" });
-    }
+    // if (!phone) {
+    //   return res.send({ message: "phone is Required" });
+    // }
+    // if (!address) {
+    //   return res.send({ message: "address is Required" });
+    // }
     
     //check user
     const existinguser = await userModel.findOne({ email });

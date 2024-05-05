@@ -4,7 +4,9 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import chalk from 'chalk';
 import dotenv from 'dotenv';
-import authRoutes from './routes/authRoute.js'
+import authRoutes from './routes/authRoute.js';
+import cors from 'cors'; // Import cors module
+
 dotenv.config();
 
 mongoose.connect(process.env.MONGODB_URI, {
@@ -21,6 +23,11 @@ mongoose.connect(process.env.MONGODB_URI, {
 const app = express();
 
 // Middleware
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(morgan('dev')); // Morgan middleware for logging
@@ -33,7 +40,13 @@ app.get('/', (req, res) => {
   res.send('<h1>Welcome to the e-commerce app<h1>');
 });
 
-const PORT = process.env.PORT || 8000; 
+const PORT = process.env.PORT || 8000;
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(chalk.red('Error:', err));
+  res.status(500).json({ error: 'Internal server error' });
+});
 
 // Start the server
 app.listen(PORT, () => {
