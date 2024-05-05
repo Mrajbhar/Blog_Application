@@ -1,0 +1,99 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+  }
+  
+  /* Container Styles */
+  .home-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Hero Section Styles */
+  .hero {
+    background-color: #3498db;
+    color: #fff;
+    padding: 50px;
+    text-align: center;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+  }
+  
+  /* Typewriter Animation */
+  .typewriter-text::after {
+    content: '|';
+    display: inline-block;
+    animation: blink-caret 0.75s infinite;
+  }
+  
+  @keyframes blink-caret {
+    50% {
+      opacity: 0;
+    }
+  }
+  
+  /* Featured Posts Section Styles */
+  .featured-posts {
+    margin-top: 40px;
+  }
+  
+  .featured-posts h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Latest News Section Styles */
+  .latest-news {
+    margin-top: 40px;
+  }
+  
+  .latest-news h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Popular Topics Section Styles */
+  .popular-topics {
+    margin-top: 40px;
+  }
+  
+  .popular-topics h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Newsletter Section Styles */
+  .newsletter {
+    margin-top: 40px;
+  }
+  
+  .newsletter h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Animation for Fade-in Effect */
+  .fade-in {
+    opacity: 0;
+    animation: fadeInAnimation 1s ease forwards;
+  }
+  
+  @keyframes fadeInAnimation {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

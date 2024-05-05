@@ -8,7 +8,7 @@ const router = express.Router();
 
 export const registerController = async (req, res) => {
   try {
-    const { name, email, password, phone, address ,answer} = req.body;
+    const { name, email, password} = req.body;
 
     //validetion
 
@@ -46,10 +46,10 @@ export const registerController = async (req, res) => {
     const user = await new userModel({
       name,
       email,
-      phone,
-      address,
+      // phone,
+      // address,
       password: hashedPassword,
-      answer
+      // answer
     }).save();
 
     res.status(201).send({
