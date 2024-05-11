@@ -1,99 +1,58 @@
-/* Global Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
-    color: #333;
-  }
-  
-  /* Container Styles */
-  .home-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  /* Hero Section Styles */
-  .hero {
-    background-color: #3498db;
-    color: #fff;
-    padding: 50px;
-    text-align: center;
-  }
-  
-  .hero h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-  }
-  
-  .hero p {
-    font-size: 1.2rem;
-  }
-  
-  /* Typewriter Animation */
-  .typewriter-text::after {
-    content: '|';
-    display: inline-block;
-    animation: blink-caret 0.75s infinite;
-  }
-  
-  @keyframes blink-caret {
-    50% {
-      opacity: 0;
-    }
-  }
-  
-  /* Featured Posts Section Styles */
-  .featured-posts {
-    margin-top: 40px;
-  }
-  
-  .featured-posts h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  /* Latest News Section Styles */
-  .latest-news {
-    margin-top: 40px;
-  }
-  
-  .latest-news h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  /* Popular Topics Section Styles */
-  .popular-topics {
-    margin-top: 40px;
-  }
-  
-  .popular-topics h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  /* Newsletter Section Styles */
-  .newsletter {
-    margin-top: 40px;
-  }
-  
-  .newsletter h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  /* Animation for Fade-in Effect */
-  .fade-in {
+/* Additional CSS for design enhancements */
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero {
+  /* background-image: url('/images/hero-background.jpg'); Assuming the image is in a folder named 'images' in your project */
+  background-size: cover;
+  background-position: center;
+}
+
+
+.hero-content {
+  text-align: center;
+}
+
+.typewriter-text {
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
+
+
+.section {
+  border-radius: 20px; /* Adjust as needed */
+  margin-bottom: 20px; /* Add some space between sections */
+}
+
+@keyframes slideIn {
+  from {
     opacity: 0;
-    animation: fadeInAnimation 1s ease forwards;
+    transform: translateY(-20px);
   }
-  
-  @keyframes fadeInAnimation {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
+}
+
+.section {
+  border-radius: 20px;
+  margin-bottom: 20px;
+  animation: slideIn 0.5s ease forwards; /* Apply animation */
+}

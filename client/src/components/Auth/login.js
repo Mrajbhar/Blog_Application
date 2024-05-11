@@ -7,6 +7,9 @@ import facebook from "../../assets/images/facebook.svg";
 import google from "../../assets/images/google.svg";
 import linkedin from "../../assets/images/linkedin.svg";
 import "../../styles/styles.css";
+import "tailwindcss/tailwind.css";
+import { useAuth } from "../../context/auth";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -17,42 +20,39 @@ const Login = () => {
   const [login, setLogin] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
-
+  const [darkMode, setDarkMode] = useState(false); // State for dark mode
+  const [auth,setAuth] = useAuth();
 
 
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Sign-in button clicked");
-  
-    if (!email || !password) {
-      toast.error("Please enter both email and password.");
-      return;
-    }
-  
     try {
-      // Simulating a successful login response
-      // Replace this with your actual API call
-      const res = { data: { success: true, message: "Login successful" } };
-  
-      // Check if the login was successful
-      if (res && res.data.success) {
-        // Display success message
-        toast.success("Login successful! " + res.data.message);
-        // Set token in local storage
-        localStorage.setItem("token", "dummyToken");
-        // Navigate to the intended location
+      const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/login`,
+        {email, password}
+      );
+
+      if(res && res.data.success)
+      {
+        toast.success(res.data && res.data.message);
+        setAuth({
+          ...auth,
+          user:res.data.user,
+          token:res.data.token,
+        });
+        localStorage.setItem('auth',JSON.stringify(res.data));
         navigate(location.state || "/home");
-      } else {
-        // Display error message if login failed
-        toast.error("Login failed. " + res.data.message);
+      }
+      else
+      {
+        toast.error(res.data.message);
       }
     } catch (error) {
       console.log(error);
-      // Display error message if something went wrong
       toast.error("Something went wrong");
     }
   };
+
 
 
   const handleRegister = async (e) => {
@@ -81,7 +81,7 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
+    <div className={`login ${darkMode ? 'dark' : ''}`}> {/* Apply dark mode class */}
       <div
         className={`login__colored-container ${
           login
