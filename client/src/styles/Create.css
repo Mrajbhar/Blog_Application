@@ -1,0 +1,53 @@
+.create-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .create-form {
+    margin-top: 20px;
+  }
+  
+  .title-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .editor-wrapper {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .editor-content {
+    padding: 10px;
+    min-height: 200px; /* Adjust height as needed */
+  }
+  
+  .create-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add animation for button */
+  }
+  
+  .create-button:hover {
+    background-color: #0056b3; /* Change color on hover */
+  }
+  
+  .success-message {
+    color: green;
+    margin-top: 10px;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+  
