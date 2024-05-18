@@ -10,8 +10,8 @@ const Projects = () => {
   useEffect(() => {
     const fetchBlogPosts = async () => {
       try {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
-        setBlogPosts(response.data);
+        const response = await axios.get(`${process.env.REACT_APP_API}/api/v1/post/get-post`);
+        setBlogPosts(response.data); // Assuming response.data is an array of blog posts
       } catch (error) {
         console.error('Error fetching blog posts:', error);
       }
@@ -20,11 +20,12 @@ const Projects = () => {
     fetchBlogPosts();
   }, []);
 
-  // Pagination
+  // Pagination Logic
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = blogPosts.slice(indexOfFirstPost, indexOfLastPost);
 
+  // Function to change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
@@ -34,10 +35,12 @@ const Projects = () => {
         
         {/* List of existing blog posts */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {currentPosts.map((post, index) => (
-            <div key={post.id} className={`bg-${index % 2 === 0 ? 'blue' : 'green'}-200 shadow-md rounded p-4 hover:shadow-lg transition duration-300`}>
-              <h2 className="text-xl font-bold mb-2">{post.title}</h2>
-              <p className="text-gray-700">{post.body}</p>
+          {currentPosts.map((post) => (
+            <div key={post._id} className="rounded-lg overflow-hidden shadow-md bg-white hover:shadow-lg transition duration-300">
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2 text-blue-500">{post.title}</div>
+                <p className="text-gray-700 text-base">{post.content}</p>
+              </div>
             </div>
           ))}
         </div>

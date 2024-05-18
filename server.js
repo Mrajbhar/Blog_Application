@@ -5,7 +5,8 @@ import mongoose from 'mongoose';
 import chalk from 'chalk';
 import dotenv from 'dotenv';
 import authRoutes from './routes/authRoute.js';
-import cors from 'cors'; // Import cors module
+import postroute from "./routes/postRoute.js"
+import cors from 'cors'; 
 
 dotenv.config();
 
@@ -34,6 +35,8 @@ app.use(morgan('dev')); // Morgan middleware for logging
 
 // Routes
 app.use('/api/v1/auth', authRoutes);
+
+app.use('/api/v1/post',postroute);
 
 // Root endpoint
 app.get('/', (req, res) => {

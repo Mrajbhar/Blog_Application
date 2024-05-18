@@ -5,6 +5,7 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import Layout from '../Layout/Layout';
 import Typist from 'react-typist'; // Import Typist
 import KeyboardEventHandler from 'react-keyboard-event-handler'; // Import KeyboardEventHandler
+import axios from 'axios'; // Import axios
 import '../../styles/Create.css';
 
 const Create = () => {
@@ -21,7 +22,7 @@ const Create = () => {
     setEditorState(editorState);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     // Simple form validation
@@ -34,16 +35,24 @@ const Create = () => {
     const contentState = editorState.getCurrentContent();
     const rawContentState = convertToRaw(contentState);
 
-    // Here you can add your logic to submit the blog post data to the backend
-    // For demonstration purposes, I'm just logging the data
-    console.log('Title:', title);
-    console.log('Content:', rawContentState);
-
-    // Clear form fields after successful submission
-    setTitle('');
-    setEditorState(EditorState.createEmpty());
-    setSuccessMessage('Blog post created successfully!');
-    setErrorMessage('');
+    try {
+      // Send POST request to create post
+      const response = await axios.post(`${process.env.REACT_APP_API}/api/v1/post/create-post`, {
+        title,
+        content: JSON.stringify(rawContentState), // Send content as JSON string
+      });
+      
+      // Clear form fields after successful submission
+      setTitle('');
+      setEditorState(EditorState.createEmpty());
+      setSuccessMessage('Blog post created successfully!');
+      setErrorMessage('');
+      
+      console.log('Blog post created:', response.data); // Log the created post data
+    } catch (error) {
+      console.error('Error creating blog post:', error);
+      setErrorMessage('An error occurred while creating the blog post. Please try again.');
+    }
   };
 
   return (
